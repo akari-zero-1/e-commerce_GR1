@@ -29,7 +29,8 @@ class ShoppingOnlineLocation:
                 return base_url
             case "lazada":
                 filter_keyword = filter_string(self.keyword, "-")
-                base_url = "https://www.lazada.vn/tag/{0}/?page={1}".format(filter_keyword, self.page)
+                base_url = f"https://www.lazada.vn/catalog/?q={filter_keyword}&page={self.page}&spm=a2o4n.searchlist.cate_9_1.2.2fb942d5CkzyvG&from=hp_categories&src=all_channel"
+                
                 return base_url
             case "amazon":
                 filter_keyword = filter_string(self.keyword, "+")

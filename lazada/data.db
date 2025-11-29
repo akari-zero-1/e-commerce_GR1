@@ -1,0 +1,26 @@
+CREATE TABLE Users (
+    user_id SERIAL PRIMARY KEY,
+    full_name VARCHAR(100),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255),
+    job_title VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE ChatSessions (
+    session_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    title VARCHAR(255) DEFAULT 'New Chat',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
+);
+
+CREATE TABLE Messages (
+    message_id SERIAL PRIMARY KEY,
+    session_id INT NOT NULL,
+    sender_type VARCHAR(10) CHECK (sender_type IN ('USER', 'AI')),
+    content TEXT NOT NULL,
+    ai_analysis_data JSONB,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_session FOREIGN KEY (session_id) REFERENCES ChatSessions(session_id) ON DELETE CASCADE
+);
