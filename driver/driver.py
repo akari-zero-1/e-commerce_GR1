@@ -18,6 +18,7 @@ def create_web_driver(url: str, location: str) -> WebDriver:
     chrome_options.add_argument('disable-notifications')
     chrome_options.add_argument('--disable-infobars')
     chrome_options.add_argument('start-maximized')
+    chrome_options.add_argument("headless=new")
     # To disable the message, "Chrome is being controlled by automated test software"
     chrome_options.add_argument("disable-infobars")
     # Pass the argument 1 to allow and 2 to block

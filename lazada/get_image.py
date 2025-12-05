@@ -25,6 +25,7 @@ def run_test_gallery():
     options = Options()
     # options.add_argument("--headless") # Bỏ comment nếu muốn chạy ẩn
     options.add_argument("--disable-blink-features=AutomationControlled") 
+    options.add_argument("headless=new")
     
     print("Đang khởi động trình duyệt...")
     service = Service(ChromeDriverManager().install())
@@ -82,8 +83,7 @@ def run_test_gallery():
     except Exception as e:
         print(f"Có lỗi xảy ra: {e}")
     finally:
-        # Giữ màn hình để xem kết quả, nhấn Enter để thoát
-        input("\nĐã xong. Nhấn Enter để đóng trình duyệt...")
+        
         driver.quit()
 
 if __name__ == "__main__":
